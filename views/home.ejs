@@ -1,0 +1,110 @@
+<section class="hero">
+  <div class="video-background">
+    <iframe 
+      title="vimeo-player" 
+      src="https://player.vimeo.com/video/910166925?h=f4caef9f1e&autoplay=1&loop=1&muted=1&background=1&controls=0&title=0&byline=0&portrait=0" 
+      frameborder="0" 
+      referrerpolicy="strict-origin-when-cross-origin" 
+      allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" 
+      allowfullscreen>
+    </iframe>
+    <div class="video-overlay"></div>
+  </div>
+  <div class="floating-elements">
+    <div class="floating-element">📸</div>
+    <div class="floating-element">❤️</div>
+    <div class="floating-element">🌟</div>
+    <div class="floating-element">✨</div>
+  </div>
+  <div class="container">
+    <div class="hero-welcome">
+      <h1 class="hero-title">Welcome to Vibra</h1>
+      <p class="hero-subtitle">Discover, share, and connect with the world through beautiful moments and stories that inspire and unite us all.</p>
+      
+      <div class="hero-cta">
+        <a href="#feed" class="cta-button">
+          Explore Feed
+        </a>
+        <a href="/about" class="cta-button secondary">
+          ✨ Learn More
+        </a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-content">
+        <div class="stats">
+          <div class="stat-card">
+            <div class="stat-number">2.8K+</div>
+            <div class="stat-label">Active Users</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">15.2K+</div>
+            <div class="stat-label">Posts Shared</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">47K+</div>
+            <div class="stat-label">Connections Made</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">99.2%</div>
+            <div class="stat-label">User Satisfaction</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="feed-header" id="feed">
+      <h2 class="feed-title">Latest Stories</h2>
+      <p class="feed-description">See what's happening in the Vibra community right now</p>
+    </div>
+    <div class="feed-placeholder">
+      <% if (posts && posts.length > 0) { %>
+        <% posts.forEach((post) => { %>
+          <article class="post" aria-label="<%= post.username %> shared a <%= typeof post.category === 'string' ? post.category.toLowerCase() : 'community' %> update">
+            <div class="post-header">
+              <div class="post-avatar"><%= post.avatar %></div>
+              <div class="post-user-info">
+                <div class="post-username"><%= post.username %></div>
+                <div class="post-time"><%= post.time %></div>
+              </div>
+              <div class="post-menu" aria-hidden="true">⋯</div>
+            </div>
+            <div class="post-image <%= post.categoryClass %> <%= post.mediaType === 'video' ? 'has-video' : '' %>">
+              <% if (post.mediaType === 'video') { %>
+                <video aria-label="<%= post.alt %>" autoplay muted loop playsinline preload="metadata" <% if (post.posterUrl) { %>poster="<%= post.posterUrl %>"<% } %>>
+                  <source src="<%= post.mediaUrl %>" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              <% } else { %>
+                <img src="<%= post.mediaUrl %>" alt="<%= post.alt %>" loading="lazy">
+              <% } %>
+              <span class="post-category"><%= post.category %></span>
+            </div>
+            <div class="post-actions">
+              <span class="post-action <%= post.isLiked ? 'liked' : '' %>" title="<%= post.isLiked ? 'Unlike' : 'Like' %>">❤️</span>
+              <span class="post-action" title="Comment">💬</span>
+              <span class="post-action" title="Share">📤</span>
+              <span class="post-action post-bookmark <%= post.isBookmarked ? 'saved' : '' %>" title="<%= post.isBookmarked ? 'Remove bookmark' : 'Save' %>">🔖</span>
+            </div>
+            <div class="post-content">
+              <div class="post-likes"><%= post.likes.toLocaleString() %> likes</div>
+              <div class="post-caption">
+                <strong><%= post.username %></strong> <%= post.caption %>
+                <span class="post-hashtags"><%= post.hashtags %></span>
+              </div>
+              <div class="post-comments">View all <%= post.commentsCount.toLocaleString() %> comments</div>
+            </div>
+          </article>
+        <% }) %>
+      <% } else { %>
+        <p class="feed-empty">No stories to show just yet—check back soon!</p>
+      <% } %>
+    </div>
+    <div class="load-more-section">
+      <button class="load-more-btn" id="loadMoreBtn">
+        <span class="btn-text">Load More Posts</span>
+        <span class="btn-loader" style="display: none;">Loading...</span>
+      </button>
+      <p class="load-more-text">Discover more amazing content from our community</p>
+    </div>
+  </div>
+</section>
