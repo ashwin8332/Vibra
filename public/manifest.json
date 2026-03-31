@@ -1,0 +1,23 @@
+{
+  "name": "Vibra",
+  "short_name": "Vibra",
+  "description": "A fast and installable social app interface",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#fafafa",
+  "theme_color": "#0095f6",
+  "icons": [
+    {
+      "src": "./images/logo.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "./images/logo.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    }
+  ]
+}

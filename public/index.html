@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="Vibra - PWA-ready social experience">
+  <title>Vibra PWA</title>
+
+  <!-- App manifest for installability -->
+  <link rel="manifest" href="./manifest.json">
+
+  <!-- Icons -->
+  <link rel="icon" type="image/svg+xml" href="./images/logo.svg">
+  <link rel="apple-touch-icon" sizes="192x192" href="./images/logo.svg">
+
+  <!-- Relative stylesheet path -->
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+  <header class="topbar" id="navbar">
+    <div class="container">
+      <a href="./" class="logo">Vibra</a>
+      <nav class="mobile-nav">
+        <a href="./">Home</a>
+        <a href="./about">About</a>
+        <a href="./contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Welcome to Vibra</h1>
+      <p>Offline-first, fast, and ready to install as a Progressive Web App.</p>
+      <p>All paths in this demo are relative and ready for static hosting.</p>
+    </section>
+
+    <section>
+      <h2>Assets are in place</h2>
+      <ul>
+        <li><strong>CSS</strong>: <code>public/css/style.css</code></li>
+        <li><strong>JS</strong>: <code>public/js/app.js</code></li>
+        <li><strong>Images</strong>: <code>public/images/logo.svg</code></li>
+      </ul>
+    </section>
+  </main>
+
+  <!-- App script -->
+  <script src="./js/app.js"></script>
+
+  <!-- Register Service Worker -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('./service-worker.js')
+          .then(() => console.log('Service Worker registered'))
+          .catch(err => console.error('SW registration failed:', err));
+      });
+    }
+  </script>
+</body>
+</html>
